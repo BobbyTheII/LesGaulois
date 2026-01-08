@@ -13,5 +13,13 @@ public class Gaulois {
 		return nom;
 	}
 	
-
+	public void parler(String phrase) {
+		System.out.println("Le gaulois "+nom+" : «"+phrase+"».");
+	}
+	
+	//main C
+	public static void main(String[] args) {
+		Gaulois asterix = new Gaulois("Asterix",8);
+		System.out.println(asterix.getNom());
+	}
 }
