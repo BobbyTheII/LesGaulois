@@ -19,8 +19,8 @@ public class Gaulois extends Personnage{
 	public void frapper(Personnage adversaire) {
 		 if(this.getForce()>0) {
 		int nouvelleForce = (int)(this.getForce()*forceAdditionel);
-		System.out.println("Le "+this.donnerAuteur()+" donne un grand coup de force "+nouvelleForce/3+" au "+adversaire.donnerAuteur());
-		adversaire.recevoirCoup((int)(nouvelleForce/3));
+		System.out.println("Le "+this.donnerAuteur()+" donne un grand coup de force "+nouvelleForce+" au "+adversaire.donnerAuteur());
+		adversaire.recevoirCoup(nouvelleForce);
 		if(forceAdditionel>1.) {
 			forceAdditionel-=0.5;
 		}

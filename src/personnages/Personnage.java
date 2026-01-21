@@ -29,15 +29,15 @@ public abstract class Personnage {
 	
 	public void frapper(Personnage adversaire) {
 		if(force!=0) {
-			System.out.println("Le "+this.donnerAuteur()+" donne un grand coup de force "+(int)force/3+" au "+adversaire.donnerAuteur());
-			adversaire.recevoirCoup((int)force/3);
+			System.out.println("Le "+this.donnerAuteur()+" donne un grand coup de force "+force+" au "+adversaire.donnerAuteur());
+			adversaire.recevoirCoup(force);
 		}
 	}
 	
 	public void recevoirCoup(int coup) {
 		if((force-coup)<=0) {
 			force = 0;
-			this.parler("j'abandonne");
+			this.parler("j'abandonne...");
 		}
 		else {
 			force -= coup;
