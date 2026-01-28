@@ -1,7 +1,7 @@
 package personnages;
 
 public enum Equipement {
-	CASQUE("Le casque absorbe 2 du coup ",2),PLASTRON("Le plastron absorbe 3 du coup ",3),BOUCLIER("Le bouclier absorbe 3 du coup ",3);
+	CASQUE("Le casque ",2),PLASTRON("Le plastron ",3),BOUCLIER("Le bouclier ",3);
 	
 	private String chaine;
 	private int forceDeduite;
