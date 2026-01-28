@@ -21,6 +21,14 @@ public class Camp {
 		return commendant;
 	}
 	
+	public Soldat[] getSoldats() {
+		return soldats;
+	}
+	
+	public int getLength() {
+		return indice;
+	}
+	
 	public void ajouterSoldat(Soldat soldat) {
 		if(indice==soldats.length) {
 			commendant.parler("Désolé Ballondebaudrus notre camp est complet !");

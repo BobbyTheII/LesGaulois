@@ -15,6 +15,14 @@ public class Village {
 		return chef;
 	}
 	
+	public Gaulois[] getVillageois() {
+		return gaulois;
+	}
+	
+	public int getLength() {
+		return indice;
+	}
+	
 	public void ajouterVillageois(Gaulois gauloi) {
 		if(indice==gaulois.length) {
 			chef.parler("Désolé "+gauloi.getNom()+" mon village est déjà bien rempli. ");
@@ -38,4 +46,5 @@ public class Village {
 		chef = nouveauChef;
 		chef.parler(" Merci !");
 	}
+
 }
