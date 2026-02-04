@@ -113,6 +113,23 @@ public class Embuscade implements IBataille{
 		}
 		return indice;
 	}
+	
+	private String donnerGauloisDebout() {
+		String debout = "" ;
+		Gaulois[] tab = new Gaulois[4];
+		int indice = 0;
+		for(int i = 0;i<promeneurs.length;i++) {
+			if(!promeneurs[i].estATerre()) {
+				tab[indice] = promeneurs[i];
+				indice++;
+			}
+		}
+		for(int i = 0;i<indice-1;i++) {
+			debout += tab[i].getNom()+", ";
+		}
+		debout+="et "+tab[indice-1].getNom();
+		return debout+".";
+	}
 
 	@Override
 	public String decrireCombat() {
@@ -152,8 +169,18 @@ public class Embuscade implements IBataille{
 
 	@Override
 	public String donnerResultat() {
-		// TODO Auto-generated method stub
-		return "donnerResultat";
+		String resultat = "" ;
+		if(sontATerreS()){
+			resultat="Malgré cette sournoise attaque, nos promeneurs s'en sont sortis indemnes.\n";
+			resultat+="Ils pouvaient compter sur la force de ";
+			resultat+= donnerGauloisDebout();
+		}
+		else {
+			resultat="L'attaque fut tellement rapide et inattendue que nos malheureux gaulois n'ont pas eu le\r\n"
+					+ "temps de réagir.\r\n"
+					+ "Ils furent ligotés et emmenés dans le camp de "+camp.getCommendant().getNom()+".\n";
+		}
+		return resultat;
 	}
 
 }
