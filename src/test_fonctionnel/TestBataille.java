@@ -35,7 +35,6 @@ public class TestBataille {
 		camp.ajouterSoldat(ballondebaudrus);
 		camp.ajouterSoldat(minus);
 		camp.ajouterSoldat(quintilius);
-		System.out.println("\n-----------\n");
 		Conteur goscinny = new Conteur("Goscinny");
 		IBataille escapade = new Embuscade(village,camp);
 		goscinny.conterHistoire(escapade);

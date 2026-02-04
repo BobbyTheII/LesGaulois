@@ -17,23 +17,25 @@ public class Druide extends Gaulois{
 		}
 	}
 	
-	public void fabriquerPotions(int nbDose) {
+	public String fabriquerPotions(int nbDose) {
 		nbPotions = nbDose;
 		puissancePotions = (random.nextInt(5))+2;
-		this.parler("J'ai concocté "+nbPotions+" doses de potion magique. Elle a une force de "+puissancePotions+"." );
+		return this.parler("J'ai concocté "+nbPotions+" doses de potion magique. Elle a une force de "+puissancePotions+"." )+"\n";
 	}
 	
-	public void boosterGaulois(Gaulois gaulois) {
+	public String boosterGaulois(Gaulois gaulois) {
+		String boost = "";
 		if(gaulois.getNom().equals("Obélix")) {
-			this.parler(" Non, Obélix Non !... Et tu le sais très bien !");
+			boost = this.parler(" Non, Obélix Non !... Et tu le sais très bien !")+"\n";
 		}
 		else if(nbPotions<1) {
-			this.parler(" Désolé "+gaulois.getNom()+" il n'y a plus une seule goutte de potion.");
+			boost = this.parler(" Désolé "+gaulois.getNom()+" il n'y a plus une seule goutte de potion.")+"\n";
 		}
 		else {
-			this.parler("Tiens "+gaulois.getNom()+" un peu de potion magique.");
+			boost = this.parler("Tiens "+gaulois.getNom()+" un peu de potion magique.")+"\n";
 			gaulois.boirePotion(puissancePotions);
 			nbPotions--;
 		}
+		return boost;
 	}
 }

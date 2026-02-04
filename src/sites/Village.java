@@ -23,15 +23,17 @@ public class Village {
 		return indice;
 	}
 	
-	public void ajouterVillageois(Gaulois gauloi) {
+	public String ajouterVillageois(Gaulois gauloi) {
+		String ajout = "";
 		if(indice==gaulois.length) {
-			chef.parler("Désolé "+gauloi.getNom()+" mon village est déjà bien rempli. ");
+			ajout += chef.parler("Désolé "+gauloi.getNom()+" mon village est déjà bien rempli. ")+"\n";
 		}
 		else {
 			gaulois[indice]=gauloi;
 			indice++;
-			chef.parler(" Bienvenue "+gauloi.getNom()+" !");
+			ajout += chef.parler(" Bienvenue "+gauloi.getNom()+" !")+"\n";
 		}
+		return ajout;
 	}
 	
 	public void afficherVillage() {
@@ -41,10 +43,12 @@ public class Village {
 		}
 	}
 	
-	public void changerChef(Gaulois nouveauChef) {
-		chef.parler("Je laisse mon grand bouclier au grand "+nouveauChef.getNom());
+	public String changerChef(Gaulois nouveauChef) {
+		String nouveau = "";
+		nouveau += chef.parler("Je laisse mon grand bouclier au grand "+nouveauChef.getNom())+"\n";
 		chef = nouveauChef;
-		chef.parler(" Merci !");
+		nouveau += chef.parler(" Merci !")+"\n";
+		return nouveau;
 	}
 
 }

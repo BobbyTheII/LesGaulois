@@ -15,12 +15,13 @@ public class Soldat extends Romain{
 	}
 	
 	@Override
-	public void parler(String phrase) {
-		System.out.println(grade+this.donnerAuteur() + ": «"+phrase+"».");
+	public String parler(String phrase) {
+		return grade+this.donnerAuteur() + ": «"+phrase+"».";
 	}
 	
-	public void equiperArmure(Equipement equipement) {
+	public String equiperArmure(Equipement equipement) {
 		boolean trouve = false;
+		String equipe = "";
 		for (int i = 0;i<indice && !trouve;i++) {
 			if(equipements[i]==equipement) {
 				trouve = true;
@@ -28,29 +29,32 @@ public class Soldat extends Romain{
 		}
 		if(!trouve && indice<equipements.length) {
 			equipements[indice] = equipement;
-			System.out.println(grade+ this.donnerAuteur()+ " s'équipe avec "+equipement);
+			equipe= grade+ this.donnerAuteur()+ " s'équipe avec "+equipement;
 			indice ++;
 		}
+		return equipe;
 	}
 	
 	@Override
-	public void recevoirCoup(int coup) {
+	public String recevoirCoup(int coup) {
+		String coupRecu = "";
 		for(int i =0;i<equipements.length;i++) {
 			if(equipements[i]!=null) {
-				System.out.println(equipements[i]+"absorbe "+equipements[i].getDefense()+" du coup ");
+				coupRecu += equipements[i]+"absorbe "+equipements[i].getDefense()+" du coup \n";
 				coup-=equipements[i].getDefense();
 			}
 		}
 		if(coup>=0) {
 			if((getForce()-coup)<=0) {
 				setForce(0);
-				this.parler("j'abandonne");
+				coupRecu += this.parler("j'abandonne")+"\n";
 			}
 			else {
 				setForce(getForce()-coup);
-				this.parler("AÏE !");
+				coupRecu+=this.parler("AÏE !")+"\n";
 			}
 		}
+		return coupRecu;
 	}
 	
 }

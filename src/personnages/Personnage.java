@@ -21,28 +21,32 @@ public abstract class Personnage {
 		this.force = force;
 	}
 	
-	public void parler(String phrase) {
-		System.out.println("Le "+this.donnerAuteur() + ": «"+phrase+"».");
+	public String parler(String phrase) {
+		return "Le "+this.donnerAuteur() + ": «"+phrase+"».";
 	}
 	
 	protected abstract String donnerAuteur();
 	
-	public void frapper(Personnage adversaire) {
-		if(force!=0) {
-			System.out.println("Le "+this.donnerAuteur()+" donne un grand coup de force "+force+" au "+adversaire.donnerAuteur());
-			adversaire.recevoirCoup(force);
+	public String frapper(Personnage adversaire) {
+		String frappe = "";
+		if((force!=0)&&(adversaire.getForce()!=0)) {
+			frappe ="Le "+this.donnerAuteur()+" donne un grand coup de force "+force+" au "+adversaire.donnerAuteur()+"\n";
+			frappe += adversaire.recevoirCoup(force)+"\n";
 		}
+		return frappe;
 	}
 	
-	public void recevoirCoup(int coup) {
+	public String recevoirCoup(int coup) {
+		String coupRecu = "";
 		if((force-coup)<=0) {
 			force = 0;
-			this.parler("j'abandonne...");
+			coupRecu = this.parler("j'abandonne...")+"\n";
 		}
 		else {
 			force -= coup;
-			this.parler("AÏE !");
+			coupRecu = this.parler("AÏE !")+"\n";
 		}
+		return coupRecu;
 	}
 	
 	public boolean estATerre() {

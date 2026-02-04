@@ -29,15 +29,17 @@ public class Camp {
 		return indice;
 	}
 	
-	public void ajouterSoldat(Soldat soldat) {
+	public String ajouterSoldat(Soldat soldat) {
+		String ajout = "";
 		if(indice==soldats.length) {
-			commendant.parler("Désolé Ballondebaudrus notre camp est complet !");
+			ajout += commendant.parler("Désolé Ballondebaudrus notre camp est complet !")+"\n";
 		}
 		else {
 			soldats[indice]=soldat;
 			indice++;
-			soldat.parler("Je mets mon épée au service de Rome dans le camp dirigé par "+commendant.getNom());
+			ajout += soldat.parler("Je mets mon épée au service de Rome dans le camp dirigé par "+commendant.getNom())+"\n";
 		}
+		return ajout;
 	}
 	
 	public void afficherCamp() {
@@ -47,13 +49,15 @@ public class Camp {
 		}
 	}
 	
-	public void changerCommandant(Soldat soldat) {
+	public String changerCommandant(Soldat soldat) {
+		String nouveau = "";
 		if (soldat.getGrade()==Grade.CENTURION) {
 			commendant = soldat;
-			soldat.parler("Moi "+soldat.getNom()+" je prends la direction du camp romain. ");
+			nouveau += soldat.parler("Moi "+soldat.getNom()+" je prends la direction du camp romain. ")+"\n";
 		}
 		else {
-			soldat.parler(" Je ne suis pas suffisamment gradé pour prendre la direction du camp romain.");
+			nouveau += soldat.parler(" Je ne suis pas suffisamment gradé pour prendre la direction du camp romain.")+"\n";
 		}
+		return nouveau;
 	}
 }

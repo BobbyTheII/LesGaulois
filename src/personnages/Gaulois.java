@@ -16,15 +16,17 @@ public class Gaulois extends Personnage{
 		forceAdditionel = puissancePotions;
 	}
 	 @Override
-	public void frapper(Personnage adversaire) {
-		 if(this.getForce()>0) {
-		int nouvelleForce = (int)(this.getForce()*forceAdditionel);
-		System.out.println("Le "+this.donnerAuteur()+" donne un grand coup de force "+nouvelleForce+" au "+adversaire.donnerAuteur());
-		adversaire.recevoirCoup(nouvelleForce);
-		if(forceAdditionel>1.) {
-			forceAdditionel-=0.5;
+	public String frapper(Personnage adversaire) {
+		 String frappe = "";
+		 if((this.getForce()>0)&&(adversaire.getForce()>0)) {
+			int nouvelleForce = (int)(this.getForce()*forceAdditionel);
+			frappe = "Le "+this.donnerAuteur()+" donne un grand coup de force "+nouvelleForce+" au "+adversaire.donnerAuteur()+"\n";
+			frappe += adversaire.recevoirCoup(nouvelleForce);
+			if(forceAdditionel>1.) {
+				forceAdditionel-=0.5;
+			}
 		}
-		}
+		return frappe;
 	}
 	
 	//main C

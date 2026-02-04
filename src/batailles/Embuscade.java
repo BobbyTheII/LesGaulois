@@ -2,6 +2,7 @@ package batailles;
 
 import personnages.*;
 import sites.*;
+import java.util.Random;
 
 public class Embuscade implements IBataille{
 	
@@ -64,14 +65,89 @@ public class Embuscade implements IBataille{
 
 	@Override
 	public String preparerCombat() {
-		// TODO Auto-generated method stub
-		return "preparerCombat";
+		String preparation = "Les soldats s'etaient bien préparé :\n";
+		for(int i = 0;i<soldats.length;i++) {
+			preparation += "-"+ soldats[i].equiperArmure(Equipement.CASQUE)+"\n";
+			preparation += "-"+ soldats[i].equiperArmure(Equipement.PLASTRON)+"\n";
+			preparation += "-"+ soldats[i].equiperArmure(Equipement.BOUCLIER)+"\n";
+		}
+		return preparation;
+	}
+	
+	private boolean sontATerreG() {
+		boolean ko = true;
+		for(int i = 0;i<promeneurs.length;i++) {
+			if(!promeneurs[i].estATerre()) {
+				ko = false;
+			}
+		}
+		return ko;
+	}
+	
+	private boolean sontATerreS() {
+		boolean ko = true;
+		for(int i = 0;i<soldats.length;i++) {
+			if(!soldats[i].estATerre()) {
+				ko = false;
+			}
+		}
+		return ko;
+	}
+	
+	private int getIndiceG() {
+		int indice = -1;
+		for(int i = 0; i<promeneurs.length;i++) {
+			if(!promeneurs[i].estATerre()) {
+				indice = i;
+			}
+		}
+		return indice;
+	}
+	
+	private int getIndiceS() {
+		int indice = -1;
+		for(int i = 0; i<soldats.length;i++) {
+			if(!soldats[i].estATerre()) {
+				indice = i;
+			}
+		}
+		return indice;
 	}
 
 	@Override
 	public String decrireCombat() {
-		// TODO Auto-generated method stub
-		return "decrireCombat";
+		String decrit = "";
+		boolean gauloisKO = false;
+		boolean soldatsKO = false;
+		int indiceG;
+		int indiceS;
+		Random random = new Random();
+		while(!soldatsKO && !gauloisKO) {
+			Gaulois frappeurG = promeneurs[random.nextInt(promeneurs.length)];
+			Soldat frappeurS = soldats[random.nextInt(soldats.length)];
+			Gaulois victimeG = promeneurs[random.nextInt(promeneurs.length)];
+			Soldat victimeS = soldats[random.nextInt(soldats.length)];	
+			indiceG = getIndiceG();
+			indiceS = getIndiceS();
+			if(frappeurG.estATerre()) {	
+				frappeurG = promeneurs[indiceG];
+			}
+			if(frappeurS.estATerre()) {
+				frappeurS = soldats[indiceS];
+			}
+			if(victimeG.estATerre()) {
+				victimeG = promeneurs[indiceG];
+			}
+			if(victimeS.estATerre()) {
+				victimeS = soldats[indiceS];
+			}
+
+			decrit+= frappeurG.frapper(victimeS)+"\n";
+			decrit+= frappeurS.frapper(victimeG)+"\n";
+			soldatsKO = sontATerreS();
+			gauloisKO = sontATerreG();
+		}
+		return decrit;
 	}
 
 	@Override
